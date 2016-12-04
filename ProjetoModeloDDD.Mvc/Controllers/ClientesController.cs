@@ -12,15 +12,20 @@ namespace ProjetoModeloDDD.Mvc.Controllers
 {
     public class ClientesController : Controller
     {
+        private readonly int itens = 2;
         private readonly IClienteAppService _clienteApp;
         public ClientesController(IClienteAppService clienteApp)
         {
             _clienteApp = clienteApp;
         }
         // GET: Clientes
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
-            var model = Mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteViewModel>>(_clienteApp.GetAll());
+            var currentPage = pagina ?? 1;
+            var clientes = _clienteApp.GetAll();
+            this.ViewBag._pagina = currentPage;
+            this.ViewBag._total = clientes.Count();
+            var model = Mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteViewModel>>(clientes.Skip((2 * currentPage - 1)).Take(2));
             return View(model);
         }
 

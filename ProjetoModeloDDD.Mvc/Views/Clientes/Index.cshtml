@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<ProjetoModeloDDD.Mvc.ViewModels.ClienteViewModel>
-
 @{
     ViewBag.Title = "Index";
 }
@@ -46,6 +45,23 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.ClienteId })
         </td>
     </tr>
+
+ 
 }
 
 </table>
+<div id="paginacao" data-pagina="@ViewBag._pagina" data-total="@ViewBag._total"  class="pagination"></div>
+
+<hr />
+
+<div class="pagination">
+    <ul>
+        <li><a href="#">Prev</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
+</div>
+
