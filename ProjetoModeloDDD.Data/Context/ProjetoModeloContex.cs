@@ -51,12 +51,14 @@ namespace ProjetoModeloDDD.Data.Context
         public override int SaveChanges()
         {
 
-            foreach (var entry in ChangeTracker.Entries().Where(p => p.Entity.GetType().GetProperty("Data_Cadastro") == null))
+            var entries = ChangeTracker.Entries().Where(p => p.Entity.GetType().GetProperty("Data_Cadastro") == null);
+
+            foreach (var entry in entries)
             {
                 if (entry.State == EntityState.Added)
-                    entry.Property("Data_Cadastro").CurrentValue = DateTime.Now;
+                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
                 else if (entry.State == EntityState.Modified)
-                    entry.Property("Data_Cadastro").IsModified = false;
+                    entry.Property("DataCadastro").IsModified = false;
 
 
             }

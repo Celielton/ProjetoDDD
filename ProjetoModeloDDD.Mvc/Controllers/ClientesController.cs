@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using ProjetoModeloDDD.Application.Interface;
+using ProjetoModeloDDD.Domain.Entities;
+using ProjetoModeloDDD.Mvc.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +12,23 @@ namespace ProjetoModeloDDD.Mvc.Controllers
 {
     public class ClientesController : Controller
     {
+        private readonly IClienteAppService _clienteApp;
+        public ClientesController(IClienteAppService clienteApp)
+        {
+            _clienteApp = clienteApp;
+        }
         // GET: Clientes
         public ActionResult Index()
         {
-            return View();
+            var model = Mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteViewModel>>(_clienteApp.GetAll());
+            return View(model);
         }
 
         // GET: Clientes/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var model = Mapper.Map<Cliente, ClienteViewModel>(_clienteApp.GetbyId(id));
+            return View(model);
         }
 
         // GET: Clientes/Create
@@ -28,15 +39,15 @@ namespace ProjetoModeloDDD.Mvc.Controllers
 
         // POST: Clientes/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ClienteViewModel clienteViewModel)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                var model = Mapper.Map<ClienteViewModel, Cliente>(clienteViewModel);
+                _clienteApp.Add(model);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
@@ -45,16 +56,18 @@ namespace ProjetoModeloDDD.Mvc.Controllers
         // GET: Clientes/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = Mapper.Map<Cliente,ClienteViewModel>(_clienteApp.GetbyId(id));
+            return View(model);
         }
 
         // POST: Clientes/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ClienteViewModel cliente)
         {
             try
             {
-                // TODO: Add update logic here
+                var model = Mapper.Map<ClienteViewModel, Cliente>(cliente);
+                _clienteApp.Update(model);
 
                 return RedirectToAction("Index");
             }
@@ -67,16 +80,17 @@ namespace ProjetoModeloDDD.Mvc.Controllers
         // GET: Clientes/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = Mapper.Map<Cliente,ClienteViewModel>(_clienteApp.GetbyId(id));
+            return View(model);
         }
 
         // POST: Clientes/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(ClienteViewModel cliente)
         {
             try
             {
-                // TODO: Add delete logic here
+                _clienteApp.Remove(Mapper.Map<ClienteViewModel, Cliente>(cliente));
 
                 return RedirectToAction("Index");
             }

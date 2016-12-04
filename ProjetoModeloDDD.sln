@@ -16,6 +16,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", "{D0ACD373-414E-4D6F-BC1E-CF1E21D4B088}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - Crosscuting", "4.2 - Crosscuting", "{41E4B3C0-2020-4BD0-A7CB-8232C724E9E1}"
+	ProjectSection(SolutionItems) = preProject
+		ProjetoModeloDDD.Domain\Services\ClienteService.cs = ProjetoModeloDDD.Domain\Services\ClienteService.cs
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoModeloDDD.Mvc", "ProjetoModeloDDD.Mvc\ProjetoModeloDDD.Mvc.csproj", "{F38189B8-5CF2-400F-9A67-FEB38BEC5D63}"
 EndProject
