@@ -16,7 +16,7 @@ $(document).ready(function () {
         currentPage: pagina,
         cssStyle: 'pagination',
         onPageClick: function (pagenumber) {
-            window.location.href = window.location.pathname + "?pagina=" + pagenumber
+            window.location.href = window.location.pathname + "/" + pagenumber
         }
     });
 

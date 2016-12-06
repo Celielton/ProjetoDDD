@@ -19,6 +19,7 @@ namespace ProjetoModeloDDD.Mvc.Controllers
             _clienteApp = clienteApp;
         }
         // GET: Clientes
+        [Route("Clientes/{pagina=1}")]
         public ActionResult Index(int? pagina)
         {
             var currentPage = pagina ?? 1;

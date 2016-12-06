@@ -8,7 +8,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -53,15 +53,4 @@
 <div id="paginacao" data-pagina="@ViewBag._pagina" data-total="@ViewBag._total"  class="pagination"></div>
 
 <hr />
-
-<div class="pagination">
-    <ul>
-        <li><a href="#">Prev</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">Next</a></li>
-    </ul>
-</div>
 
